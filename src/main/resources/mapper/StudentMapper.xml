@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.springmvc.dao.StudentDAO">
+
+<resultMap type="Student"  id="resultListstudent">
+		<id column="ID" property="id"/>
+		<result column="stuNo" property="stuNo"/>
+		<result column="stuQQ" property="stuQQ"/>	
+		<result column="stuName" property="stuName"/>
+		<result column="stuPro" property="stuPro"/>
+		<result column="creatAt" property="create_at"/>
+		<result column="updateAt" property="update_at"/>
+	</resultMap> 
+	
+	<select id="selectAll" parameterType="java.lang.String" resultMap="resultListstudent">
+	select * from student
+	</select>
+	<delete id="deleteStu" parameterType="int" >
+	delete from student where id=#{id}
+	</delete>
+	<update id="updateStu" parameterType="User">
+	update student set stuName=#{stuName},create_at=#{createAt} where stuName=#{stuName}
+	</update>
+	<insert id="insertStu" parameterType="Student" useGeneratedKeys="true" keyProperty="id">
+		insert into student(stuNo,stuName) values(#{stuNo},#{stuName})
+	</insert>
+</mapper>
